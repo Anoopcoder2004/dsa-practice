@@ -25,3 +25,9 @@ while(current !== null){
     console.log(current.val);
     current = current.next;
 }
+
+
+//insert at beginning
+//  it's better to use head rather than n1 because in a real program you may not always have access to the original first node variable.
+let newNode = new ListNode(0,head);
+head = newNode;
