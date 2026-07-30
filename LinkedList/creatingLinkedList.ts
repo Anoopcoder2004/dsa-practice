@@ -1,33 +1,42 @@
-// Definition for a singly linked list node.
-class ListNode{
+class ListNode {
     val: number;
     next: ListNode | null;
 
-    constructor(val = 0, next : ListNode | null = null){
-        this.val = val;     // value stored in the node
-        this.next = next;   // reference to the next node
+    constructor(val = 0, next: ListNode | null = null) {
+        this.val = val;
+        this.next = next;
     }
 }
 
-// Create nodes and link them togethe
-let n3 = new ListNode(3);
-let n2 = new ListNode(2,n3);
-let n1 = new ListNode(1,n2);
+let n3 = new ListNode(30);
+let n2 = new ListNode(20, n3);
+let n1 = new ListNode(10, n2);
+let head: ListNode | null = n1;
 
-// Better approach is to keep head unchanged
-// and use another pointer for traversal
-// Head points to the first node of the linked list
-let head = n1;
 let current: ListNode | null = head;
 
-// Traverse until we reach the end of the list
-while(current !== null){
+while (current !== null) {
     console.log(current.val);
     current = current.next;
 }
 
+console.log("After Reversing");
 
-//insert at beginning
-//  it's better to use head rather than n1 because in a real program you may not always have access to the original first node variable.
-let newNode = new ListNode(0,head);
-head = newNode;
+let prev: ListNode | null = null;
+let curr: ListNode | null = head;
+
+while (curr !== null) {
+    let next: ListNode | null = curr.next;
+    curr.next = prev;
+    prev = curr;
+    curr = next;
+}
+
+head = prev;
+
+current = head;
+
+while (current !== null) {
+    console.log(current.val);
+    current = current.next;
+}
